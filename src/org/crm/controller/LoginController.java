@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.crm.exceptions.ResourceNotFoundException;
 import org.crm.pojo.SysUser;
 import org.crm.service.CheckCodeService;
 import org.crm.service.SysUserService;
@@ -35,7 +36,7 @@ public class LoginController {
 		response.setHeader("Pragma", "no-cache");
 		response.setHeader("Cache-Control", "no-cache");
 		response.setDateHeader("Expires", 0);
-		String code = checkCodeService.sendCheckCode(response.getOutputStream(), format);
+		String code = this.checkCodeService.sendCheckCode(response.getOutputStream(), format);
 		session.setAttribute("code", code);
 	}
 
@@ -60,7 +61,7 @@ public class LoginController {
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
 		JSONObject jb = new JSONObject();
-		SysUser su = sysuserService.loginSysUser(Long.parseLong(id), password);
+		SysUser su = this.sysuserService.loginSysUser(Long.parseLong(id), password);
 		if (su != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("userId", id);
@@ -74,12 +75,5 @@ public class LoginController {
 			response.setCharacterEncoding("UTF-8");
 			response.getWriter().write(jb.toString());
 		}
-	}
-	@RequestMapping("/logoff")
-	public void logoff(HttpServletRequest request, HttpServletResponse response) throws IOException, JSONException {
-		HttpSession session = request.getSession();
-		session.setAttribute("userId", null);
-		session.setAttribute("code", null);
-		response.sendRedirect(request.getContextPath());
 	}
 }
