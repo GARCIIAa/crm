@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
+@RequestMapping("/customer")
 public class CustomerController {
 
 	private static final String CUSTOMER_LEVEL_TYPE = "006";
@@ -26,7 +27,7 @@ public class CustomerController {
 	@Autowired
 	BaseDictService baseDictService;
 	
-	@RequestMapping("list")
+	@RequestMapping("/list")
 	public String queryCustomerList(QueryVo queryVo, Model model) {
 
 		try {
