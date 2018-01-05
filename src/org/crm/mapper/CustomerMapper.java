@@ -22,6 +22,7 @@ public interface CustomerMapper {
 	 * @return
 	 */
 	int queryCountByQueryVo(QueryVo queryVo);
+	
 	/**
 	 * 根据id查询客户
 	 * 
@@ -29,11 +30,19 @@ public interface CustomerMapper {
 	 * @return
 	 */
 	Customer queryCustomerById(Long id);
+	
 	/**
 	 * 根据id编辑客户
 	 * 
 	 * @param customer
 	 */
 	void updateCustomerById(Customer customer);
+	
+	/**
+	 * 根据id删除客户
+	 * 
+	 * @param id
+	 */
+	void deleteCustomerById(Long id);
 
 }

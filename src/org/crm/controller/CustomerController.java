@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -71,12 +72,22 @@ public class CustomerController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping("edit")
+	@RequestMapping("/edit")
 	@ResponseBody
 	public Customer queryCustomerById(Long id) {
 		Customer customer = this.customerService.queryCustomerById(id);
 		return customer;
 	}
-
+	@RequestMapping(value="/update",method = {RequestMethod.POST})
+	public String updateCustomerInfo(Customer cus) {
+		this.customerService.updateCustomerById(cus);
+		return "customer";
+	}
+	
+	@RequestMapping("/delete")
+	public String deleteCustomerByID(Long id) {
+		this.customerService.deleteCustomerById(id);
+		return "customer";
+	}
 
 }
