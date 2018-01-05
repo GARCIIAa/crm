@@ -6,7 +6,9 @@ import org.crm.exceptions.*;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.servlet.ModelAndView;	
+import org.springframework.web.servlet.ModelAndView;
+
+import net.sf.json.JSONException;	
 
 @Controller    
 public class BaseController {
@@ -55,12 +57,22 @@ public class BaseController {
 		return mv;
 	}
 	
-	//处理普通异常
+	//处理SQL异常
 	@ExceptionHandler(SQLException.class)
 	public ModelAndView handlerSqlException(Exception ex) {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("errorType", "数据库异常");
 		mv.addObject("errorMessage","你碰见了没人可怕的数据库异常");
+		mv.setViewName("error");
+		return mv;
+	}
+	
+	//处理JSON异常
+	@ExceptionHandler(JSONException.class)
+	public ModelAndView handlerJSONException(Exception ex) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("errorType", "数据传输异常");
+		mv.addObject("errorMessage","你碰见了没人可怕的数据传输异常");
 		mv.setViewName("error");
 		return mv;
 	}
@@ -75,5 +87,4 @@ public class BaseController {
 		return mv;
 	}
 	
-
 }
