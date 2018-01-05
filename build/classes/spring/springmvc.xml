@@ -39,10 +39,12 @@
 			<mvc:exclude-mapping path="/picturecheckcode" />
 			<mvc:exclude-mapping path="/checkcode" />
 			<mvc:exclude-mapping path="/login" />
+			<mvc:exclude-mapping path="/error/*" />
 			<bean class="org.crm.interceptor.AuthorityInterceptor" />
 		</mvc:interceptor>
 		<mvc:interceptor>
 		    <mvc:mapping path="/**" />
+		    <mvc:exclude-mapping path="/error/*" />
 			<bean class="org.crm.interceptor.NoCacheInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>

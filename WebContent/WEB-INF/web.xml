@@ -7,7 +7,22 @@
 	<welcome-file-list>
 		<welcome-file>login.jsp</welcome-file>
 	</welcome-file-list>
-
+	<error-page>
+		<error-code>400</error-code>
+		<location>/error/400</location>
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/error/404</location>
+	</error-page>
+	<error-page>
+		<error-code>406</error-code>
+		<location>/error/406</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/error/500</location>
+	</error-page>
 	<!-- 配置spring -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -21,7 +36,8 @@
 
 	<!-- 配置过滤器，解决post的乱码问题 -->
 	<filter>
-		<filter-name>encoding</filter-name>	<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<filter-name>encoding</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>encoding</filter-name>
@@ -47,9 +63,9 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	<jsp-config>
-		<taglib>  
-			    <taglib-uri>http://ssmdemo.com/common/</taglib-uri>  
-			    <taglib-location>/WEB-INF/commons.tld</taglib-location>   
-		</taglib> 
+		<taglib>
+			<taglib-uri>http://ssmdemo.com/common/</taglib-uri>
+			<taglib-location>/WEB-INF/commons.tld</taglib-location>
+		</taglib>
 	</jsp-config>
 </web-app>

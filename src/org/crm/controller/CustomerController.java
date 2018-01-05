@@ -26,7 +26,7 @@ import net.sf.json.JSONException;
 
 @Controller
 @RequestMapping("/customer")
-public class CustomerController extends BaseController{
+public class CustomerController{
 
 	private static final String CUSTOMER_LEVEL_TYPE = "006";
 	private static final String CUSTOMER_FROM_TYPE = "002";
@@ -36,10 +36,10 @@ public class CustomerController extends BaseController{
 	@Autowired
 	BaseDictService baseDictService;
 	
-	@RequestMapping("*")
-	public void test404() throws ResourceNotFoundException{
-		throw new ResourceNotFoundException();
-	}
+//	@RequestMapping("*")
+//	public void test404() throws ResourceNotFoundException{
+//		throw new ResourceNotFoundException();
+//	}
 
 	@RequestMapping("/list")
 	public String queryCustomerList(QueryVo queryVo, Model model) {
