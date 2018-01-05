@@ -1,6 +1,8 @@
 package org.crm.pojo;
 
-public class BaseDict {
+import java.io.Serializable;
+
+public class BaseDict{
 	private String dict_id;
 	private String dict_type_code;
 	private String dict_type_name;

@@ -3,19 +3,32 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
-        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
-        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	                    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+                        http://www.springframework.org/schema/mvc 
+                        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+                        http://www.springframework.org/schema/context 
+                        http://www.springframework.org/schema/context/spring-context-4.0.xsd
+                        http://www.springframework.org/schema/aop   
+                        http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 	<!-- 配置Controller扫描 -->
 	<context:component-scan base-package="org.crm.controller" />
 
 	<!-- 配置注解驱动 -->
 	<mvc:annotation-driven />
 
+<<<<<<< HEAD
 	<mvc:resources mapping="/css/**" location="/WEB-INF/css/" />
 	<mvc:resources mapping="/js/**" location="/WEB-INF/js/" />
 	<mvc:resources mapping="/fonts/**" location="/WEB-INF/fonts/" />
 	<mvc:resources mapping="/images/**" location="/WEB-INF/images/" />
+=======
+    <mvc:resources mapping="/css/**" location="/WEB-INF/css/" />
+    <mvc:resources mapping="/js/**" location="/WEB-INF/js/" />
+    <mvc:resources mapping="/fonts/**" location="/WEB-INF/fonts/" />
+    <mvc:resources location="/WEB-INF/scss/" mapping="/scss/**"/>
+>>>>>>> 248d309867c4a7f33c7a0873000e2f12d909cf60
 	<!-- 配置视图解析器 -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -24,6 +37,7 @@
 		<!-- 后缀 -->
 		<property name="suffix" value=".jsp" />
 	</bean>
+<<<<<<< HEAD
 	<!-- 注册拦截器 -->
 	<mvc:interceptors>
 		<mvc:interceptor>
@@ -41,4 +55,7 @@
 			<bean class="org.crm.interceptor.AuthorityInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
+=======
+	
+>>>>>>> 248d309867c4a7f33c7a0873000e2f12d909cf60
 </beans>
