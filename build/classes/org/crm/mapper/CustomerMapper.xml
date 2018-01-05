@@ -21,7 +21,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</sql>
 
 	<!-- 根据queryVo分页查询数据 -->
-	<select id="queryCustomerByQueryVo" parameterType="org.crm.pojo.QueryVo"
+	<select id="queryCustomerByQueryVo" parameterType="org.crm.pojo.QueryVo" 
 		resultType="org.crm.pojo.Customer">
 		SELECT
 		a.cust_id,
