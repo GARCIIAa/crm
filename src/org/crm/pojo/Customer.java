@@ -1,5 +1,6 @@
 package org.crm.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
 public class Customer {
