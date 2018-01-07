@@ -32,4 +32,29 @@
 		<!-- 设置Mapper扫描包 -->
 		<property name="basePackage" value="org.crm.mapper" />
 	</bean>
+	
+	<!-- ================================= TransactionAOP ==================================== -->
+	
+	<!-- 注册事务管理器 -->
+	<bean id="myTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	 <!-- 开启事务控制的注解支持 -->  
+    <tx:annotation-driven transaction-manager="myTransactionManager"/>
+    
+	<!-- 注册事务通知 -->
+	<tx:advice id="txAdvice" transaction-manager="myTransactionManager">
+		<tx:attributes>
+			<!-- 这里指定的是：为每一个连接点指定所要应用的事务属性 -->
+			 <tx:method name="update*" propagation="REQUIRED" read-only="false"/>  
+		</tx:attributes>
+	</tx:advice>
+	
+	<!-- AOP配置 -->
+	<aop:config>
+		<!-- 这里指定的是切入点 -->
+		<aop:pointcut expression="execution(* *..service.*.*(..))" id="myPointcut"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="myPointcut"/>
+	</aop:config>
 </beans>

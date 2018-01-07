@@ -3,18 +3,16 @@ package org.crm.controller;
 import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
-import org.crm.exceptions.ResourceNotFoundException;
 import org.crm.pojo.BaseDict;
 import org.crm.pojo.Customer;
 import org.crm.pojo.QueryVo;
 import org.crm.service.BaseDictService;
 import org.crm.service.CustomerService;
 import org.crm.utils.Page;
+import org.crm.utils.SystemControllerLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,11 +34,12 @@ public class CustomerController{
 	@Autowired
 	BaseDictService baseDictService;
 	
-//	@RequestMapping("*")
-//	public void test404() throws ResourceNotFoundException{
-//		throw new ResourceNotFoundException();
-//	}
-
+	/**
+	 * 查询所有用户,返回customer页面
+	 * 
+	 * @param queryVo,model
+	 * @return
+	 */
 	@RequestMapping("/list")
 	public String queryCustomerList(QueryVo queryVo, Model model) {
 
@@ -91,23 +90,45 @@ public class CustomerController{
 		Customer customer = this.customerService.queryCustomerById(id);
 		return customer;
 	}
+	
+	/**
+	 * 更新用户信息,返回customer页面
+	 * 
+	 * @param cus
+	 * @return
+	 */
 	@RequestMapping(value="/update",method = {RequestMethod.POST})
+	//此处为记录AOP拦截Controller记录用户操作  
+    @SystemControllerLog(description = "更新客户信息")
 	public String updateCustomerInfo(Customer cus) {
 		this.customerService.updateCustomerById(cus);
 		return "customer";
 	}
 	
+	/**
+	 * 根据id删除用户信息,返回customer页面
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping("/delete")
+	//此处为记录AOP拦截Controller记录用户操作  
+    @SystemControllerLog(description = "通过ID删除客户") 
 	public String deleteCustomerByID(Long id) {
 		this.customerService.deleteCustomerById(id);
 		return "customer";
 	}
 	
+	/**
+	 * 注销当前用户
+	 * 
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping("/logoff")
-	public void logoff(HttpServletRequest request, HttpServletResponse response) throws IOException, JSONException {
-		HttpSession session = request.getSession();
+	public String logoff(HttpSession session) throws IOException, JSONException {
 		session.setAttribute("userId", null);
 		session.setAttribute("code", null);
-		response.sendRedirect(request.getContextPath());
+		return "redirect:/";
 	}
 }

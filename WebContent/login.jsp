@@ -30,11 +30,6 @@ top.location.href = location.href;
 
 <div class="header">
   <h1 class="headerLogo"><a title="后台管理系统" target="_blank"><img alt="logo" src="<%=basePath%>images/logo.jpg"></a></h1>
-	<div class="headerNav">
-		<a href="<%=basePath%>jsp/OurTeam.jsp" target="_blank" >开发团队</a>
-		<a href="<%=basePath%>jsp/Feedback.jsp" target="_blank" >意见反馈</a>
-		<a href="<%=basePath%>jsp/Help.jsp" target="_blank" >帮助</a>
-	</div>
 </div>
 
 <div class="banner">
@@ -90,7 +85,7 @@ top.location.href = location.href;
 <div class="banner-shadow"></div>
 
 <div class="footer">
-   <p>Copyright &copy; 2017.Group JAX All rights reserved.</p>
+   <p>Copyright &copy; 2017.Group JAVAEE All rights reserved.</p>
 </div>
 <div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script></div>
 </body>
